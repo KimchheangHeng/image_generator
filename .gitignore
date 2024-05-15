@@ -189,4 +189,4 @@ cython_debug/
 
 output/
 output_images/
-output.zip
+*.zip
