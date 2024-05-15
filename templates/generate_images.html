@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generated Images</title>
+    <style>
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 20px;
+        }
+        .image-card {
+            text-align: center;
+        }
+        .image-card img {
+            max-width: 100%;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generated Images</h1>
+
+    <div class="image-grid">
+        {% for image in images %}
+            <div class="image-card">
+                <img src="{{ url_for('static', filename=image.path) }}" alt="{{ image.name }}">
+                <p>{{ image.name }}</p>
+                <a href="{{ url_for('download_image', image_path=image.path) }}">Download</a>
+            </div>
+        {% endfor %}
+        <div class="image-card">
+            <p>Download all</p>
+            <a href="{{ url_for('download_all', file_path="output.zip") }}">Download all</a>
+        </div>
+    </div>
+</body>
+</html>

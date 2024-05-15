@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Generator</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form id="imageForm" method="post" action="/generated_images">
+        <label for="text">Text:</label>
+        <input type="text" id="text" name="text" required><br>
+
+        <label for="fillColor">Fill Color:</label>
+        <input type="color" id="fillColor" name="fillColor" value="#2CC1EE" required><br>
+
+        <label for="strokeColor">Stroke Color:</label>
+        <input type="color" id="strokeColor" name="strokeColor" value="#F0F0F0" required><br>
+
+        <label for="shadowColor">Shadow Color:</label>
+        <input type="color" id="shadowColor" name="shadowColor" value="#00648B" required><br>
+
+        <input type="submit" value="Generate and Download">
+    </form>
+
+    <script>
+        // Add JavaScript code here to handle form submission and download
+        document.getElementById('imageForm').addEventListener('submit', function(evt) {
+            evt.preventDefault(); // Prevent the form from submitting normally
+
+            // Get the form values
+            var text = document.getElementById('text').value;
+            var fillColor = document.getElementById('fillColor').value;
+            var shadowColor = document.getElementById('shadowColor').value;
+            var strokeColor = document.getElementById('strokeColor').value;
+
+            // Create a new URL with the form values as query parameters
+            var url = '/generated_images?text=' + encodeURIComponent(text) +
+                      '&fillColor=' + encodeURIComponent(fillColor) +
+                      '&strokeColor=' + encodeURIComponent(strokeColor) +
+                      '&shadowColor=' + encodeURIComponent(shadowColor);
+
+            // Create a hidden link element and set its href attribute to the generated URL
+            var link = document.createElement('a');
+            link.href = url;
+
+            // Programmatically click the link to trigger the download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>
