@@ -1,7 +1,7 @@
 import os
 from PIL import Image, ImageDraw, ImageFont
 
-def generate_stickers(text, font, fill_color, stroke_color, shadow_color):
+def generate_images(text, font, fill_color, stroke_color, shadow_color):
     # Get the bounding box of the text
     bbox = font.getbbox(text)
 
@@ -61,7 +61,7 @@ if __name__ == "__main__":
                 font_path = os.path.join(font_dir, font_file)
                 font = ImageFont.truetype(font_path, size=72)
                 
-                image = generate_stickers(
+                image = generate_images(
                     text=word,
                     font=font,
                     fill_color=(44, 193, 238),

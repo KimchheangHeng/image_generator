@@ -2,7 +2,7 @@
 
 A minimal project for generating Khmer text as image with different fonts.
 
-![demo](https://raw.githubusercontent.com/kimchheangheng/resume_page/main/src/images/demo.png)
+![demo](https://raw.githubusercontent.com/kimchheangheng/image_generator/demo.png)
 
 ### Usage
 

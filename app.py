@@ -3,7 +3,7 @@ import os
 import shutil
 from flask import Flask, request, send_file, render_template
 from PIL import ImageFont
-from generate_images import generate_images
+from ./generate_images import generate_images
 
 # Generate the image using the provided parameters (similar to the code in your question)
 font_dir = "fonts"
