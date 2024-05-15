@@ -3,23 +3,27 @@ import os
 import shutil
 from flask import Flask, request, send_file, render_template
 from PIL import ImageFont
-from ./generate_images import generate_images
+
+from generate_images import generate_images
 
 # Generate the image using the provided parameters (similar to the code in your question)
 font_dir = "fonts"
 output_dir = "output"
+
+try:
+    shutil.rmtree(output_dir)
+except Exception:
+    pass
+os.makedirs(output_dir, exist_ok=True)
 
 app = Flask(__name__, static_folder=output_dir, static_url_path="/")
 app.add_url_rule(
     "/output/<path:filename>", endpoint="output", view_func=app.send_static_file
 )
 
-
 def has_contained_khmer_unicode(text):
     khmer_pattern = re.compile(r"[\u1780-\u17FF\u19E0-\u19FF]+")
     return bool(re.search(khmer_pattern, text))
-
-
 
 @app.route("/")
 def index():
@@ -35,12 +39,6 @@ def generated_images():
     fill_color = request.args.get("fillColor")
     shadow_color = request.args.get("shadowColor")
     stroke_color = request.args.get("strokeColor")
-    
-    try:
-        shutil.rmtree(output_dir)
-    except Exception:
-        pass
-    os.makedirs(output_dir, exist_ok=True)
 
     for font_file in os.listdir(font_dir):
         if font_file.endswith(".ttf"):
