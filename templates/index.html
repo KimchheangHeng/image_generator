@@ -18,6 +18,12 @@
         <label for="text">Text:</label>
         <input type="text" id="text" name="text" required><br>
 
+        <label for="language">Language:</label>
+        <select id="language" name="language" required>
+            <option value="en">English</option>
+            <option value="km">Khmer</option>
+        </select><br>
+
         <label for="fillColor">Fill Color:</label>
         <input type="color" id="fillColor" name="fillColor" value="#2CC1EE" required><br>
 
@@ -40,12 +46,14 @@
             var fillColor = document.getElementById('fillColor').value;
             var shadowColor = document.getElementById('shadowColor').value;
             var strokeColor = document.getElementById('strokeColor').value;
+            var language = document.getElementsById('language').value;
 
             // Create a new URL with the form values as query parameters
             var url = '/generated_images?text=' + encodeURIComponent(text) +
                       '&fillColor=' + encodeURIComponent(fillColor) +
                       '&strokeColor=' + encodeURIComponent(strokeColor) +
-                      '&shadowColor=' + encodeURIComponent(shadowColor);
+                      '&shadowColor=' + encodeURIComponent(shadowColor) +
+                      '&language=' + encodeURIComponent(language);
 
             // Create a hidden link element and set its href attribute to the generated URL
             var link = document.createElement('a');

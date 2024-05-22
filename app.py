@@ -7,7 +7,8 @@ from PIL import ImageFont
 from generate_images import generate_images
 
 # Generate the image using the provided parameters (similar to the code in your question)
-font_dir = "fonts"
+khmer_font_dir = "assets/khmer_fonts"
+latin_font_dir = "assets/khmer_fonts"
 output_dir = "output"
 
 try:
@@ -39,6 +40,8 @@ def generated_images():
     fill_color = request.args.get("fillColor")
     shadow_color = request.args.get("shadowColor")
     stroke_color = request.args.get("strokeColor")
+    language = request.args.get("language")
+    font_dir = khmer_font_dir if language == "km" else latin_font_dir
 
     for font_file in os.listdir(font_dir):
         if font_file.endswith(".ttf"):
